@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Fourt Wing",
+    "image": "https://images-na.ssl-images-amazon.com/images/I/91n7p-j5aqL._AC_UL254_SR254,254_.jpg",
+    "price": 31.99,
+    "genre": "",
+    "status": true,
+    "rating": 4,
+    "comments": []
+  },
+  {
+    "name": "Iron Flame",
+    "image": "https://images-na.ssl-images-amazon.com/images/I/A1FW1G46+aL._AC_UL254_SR254,254_.jpg",
+    "price": 32.38,
+    "genre": "History",
+    "status": false,
+    "rating": 3,
+    "comments": []
+  },
+  {
+    "name": "The 48 Laws of Power",
+    "image": "https://images-na.ssl-images-amazon.com/images/I/71aG+xDKSYL._AC_UL127_SR127,127_.jpg",
+    "price": 48.79,
+    "genre": "fiction",
+    "status": true,
+    "rating": 5,
+    "comments": []
+  },
+  {
+    "name": "Sanctuary of Shadow",
+    "image": "https://m.media-amazon.com/images/I/91nAWdfQ2YL._SY425_.jpg",
+    "price": 38.99,
+    "genre": "Science fiction",
+    "status": true,
+    "rating": 2,
+    "comments": []
+  },
+  {
+    "name": "Blood Gourd",
+    "image": "https://m.media-amazon.com/images/I/81yVjgP-fYL._SY425_.jpg",
+    "price": 32.38,
+    "genre": "fiction",
+    "status": false,
+    "rating": 3,
+    "author": "Cecy Robson"
+  },
+  {
+    "name": "The Last One",
+    "image": "https://m.media-amazon.com/images/I/81PwOBrC2wL._SY425_.jpg",
+    "price": 31.99,
+    "genre": "drama",
+    "status": true,
+    "rating": 4,
+    "author": " Rachel Howzell Hall"
+  }
+]
