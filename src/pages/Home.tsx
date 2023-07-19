@@ -1,8 +1,17 @@
+import Fantasy from '@/components/ui/Fantasy';
 import { Button } from '@/components/ui/button';
 import Footer from '@/layouts/Footer';
+import { IBook } from '@/types/globalTypes';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
+  const [data, setData] = useState<IBook[]>([]);
+  useEffect(() => {
+    fetch('./data.json')
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, []);
   return (
     <>
       <div className="flex justify-between items-center h-[calc(100vh-80px)] max-w-7xl mx-28 ">
@@ -32,6 +41,15 @@ export default function Home() {
           {/* <img src={banner} alt="" /> */}
         </div>
       </div>
+      <div className="mx-20 py-10">
+        <h3 className="text-4xl">Out of This World Sci-Fi & Fantasy</h3>
+
+        <div className="col-span-6 grid grid-cols-8 gap-10 py-10">
+          {data?.map((book: IBook) => (
+            <Fantasy book={book} />
+          ))}
+        </div>
+      </div>
       <div className="mb-96">
         <div>
           <img
@@ -42,7 +60,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-5xl font-black text-primary uppercase mt-10">
-            The future of science fiction is here
+            The future of Sci-Fi is here
           </h1>
           <Button className="mt-10" asChild>
             <Link to="/books">Brows all books</Link>

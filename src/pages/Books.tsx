@@ -83,7 +83,7 @@ export default function Books() {
           <div>From 0$ To {priceRange}$</div>
         </div>
       </div>
-      <div className="col-span-9 grid grid-cols-3 gap-10 py-20">
+      <div className="col-span-9 grid grid-cols-3 gap-10 py-10">
         {booksData?.map((book: IBook) => (
           <BookCard book={book} />
         ))}

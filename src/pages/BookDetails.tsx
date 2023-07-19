@@ -30,11 +30,11 @@ export default function BookDetails() {
 
   return (
     <>
-      <div className="flex max-w-7xl mx-auto items-center justify-between border-b border-gray-300 py-20">
-        <div className="w-[50%]">
+      <div className="flex max-w-7xl px-28 items-center justify-between border-b border-gray-300 py-20">
+        <div className="">
           <img src={book?.image} alt="" className="object-cover h-80" />
         </div>
-        <div className="w-[50%] space-y-3">
+        <div className=" space-y-3">
           <h1 className="text-3xl font-semibold">{book?.title}</h1>
           <p className="text-xl">Author: {book?.author}</p>
           <p className="text-xl">Publication Date: {book?.publicationDate}</p>
@@ -45,6 +45,10 @@ export default function BookDetails() {
             ))}
           </ul>
           <Button onClick={() => dispatch(addToCart(book))}>Add to cart</Button>
+        </div>
+        <div className="flex  flex-col gap-10">
+          <Button>Edit The book</Button>
+          <Button>Delete The book</Button>
         </div>
       </div>
       <BookReview id={id!} />
