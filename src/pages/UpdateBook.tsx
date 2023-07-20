@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Input } from '@/components/ui/input';
-import { usePostBookMutation } from '@/redux/features/books/bookApi';
+import { useUpdateBookMutation } from '@/redux/features/books/bookApi';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 
 interface IFormInput {
   title: string;
@@ -14,19 +15,9 @@ interface IFormInput {
   status: boolean;
 }
 
-const AddBook = () => {
-  //   const navigate = useNavigate();
-  const [postBook, { isLoading, isError }] = usePostBookMutation();
-
-  // interface IFormInput {
-  //   title: string;
-  //   author: string;
-  //   price: number;
-  //   image: string;
-  //   genre: string;
-  //   publicationDate: string;
-  //   status: boolean;
-  // }
+const UpdateBook = () => {
+  const id = useParams();
+  const [updateBook, { isLoading, isError }] = useUpdateBookMutation(id);
 
   const { handleSubmit, register, control, reset } = useForm<IFormInput>();
 
@@ -35,15 +26,9 @@ const AddBook = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
-    postBook({ ...data, comments: [] });
+    updateBook(data);
     reset();
   };
-
-  // const onSubmit = (data: any) => {
-  // console.log(data);
-  //   postBook({ ...data, comments: [] });
-  //   reset();
-  // };
 
   return (
     <div className="flex justify-center items-center overflow-auto p-10 ">
@@ -51,7 +36,7 @@ const AddBook = () => {
         className="shadow-lg p-10 flex flex-wrap gap-3 max-w-3xl justify-between border border-gray-300 rounded-md"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h1 className="w-full text-2xl text-primary mb-5">Add New Book</h1>
+        <h1 className="w-full text-2xl text-primary mb-5">Edit Your Book</h1>
         <div className="flex flex-col w-full max-w-xs">
           <label className="mb-2" htmlFor="title">
             Name
@@ -96,12 +81,7 @@ const AddBook = () => {
           <label className="mb-2" htmlFor="price">
             Price
           </label>
-          <Input
-            type="number"
-            id="price"
-            defaultValue="price"
-            {...register('price', { min: 2 })}
-          />
+          <Input type="number" id="price" {...register('price', { min: 2 })} />
         </div>
         <div className="flex flex-col w-full max-w-xs">
           <label className="mb-2" htmlFor="image">
@@ -130,16 +110,4 @@ const AddBook = () => {
   );
 };
 
-export default AddBook;
-
-// Position name
-// Company name
-// Experience
-// Work Level
-// Salary Range
-// Employment Type
-// Location
-// Overview
-// Responsibilities
-// Requirements
-// Skills
+export default UpdateBook;

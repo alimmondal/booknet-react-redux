@@ -7,6 +7,7 @@ import Home from '@/pages/Home';
 import Login from '@/pages/Login';
 import NotFound from '@/pages/NotFound';
 import Signup from '@/pages/Signup';
+import UpdateBook from '@/pages/UpdateBook';
 import { createBrowserRouter } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 
@@ -30,6 +31,10 @@ const routes = createBrowserRouter([
       {
         path: '/add-book',
         element: <AddBook />,
+      },
+      {
+        path: '/update-book/:id',
+        element: <UpdateBook />,
       },
       {
         path: '/checkout',

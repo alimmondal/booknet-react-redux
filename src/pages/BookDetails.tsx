@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import BookReview from '@/components/BookReview';
 import { Button } from '@/components/ui/button';
-import { useSingleBookQuery } from '@/redux/features/books/bookApi';
+import {
+  useDeleteBookMutation,
+  useSingleBookQuery,
+} from '@/redux/features/books/bookApi';
 import { addToCart } from '@/redux/features/cart/cartSlice';
 import { useAppDispatch } from '@/redux/hook';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function BookDetails() {
   const { id } = useParams();
@@ -23,8 +26,12 @@ export default function BookDetails() {
   //! Temporary code ends here
 
   const { data: book, isLoading, error } = useSingleBookQuery(id);
-  // console.log(product);
 
+  const _id = book?._id;
+  console.log(book, 'bookData');
+
+  const [deleteBook] = useDeleteBookMutation();
+  const navigate = useNavigate();
   // const { products, total } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
@@ -39,16 +46,24 @@ export default function BookDetails() {
           <p className="text-xl">Author: {book?.author}</p>
           <p className="text-xl">Publication Date: {book?.publicationDate}</p>
           <p className="text-xl">Rating: {book?.rating}</p>
-          <ul className="space-y-1 text-lg">
+          {/* <ul className="space-y-1 text-lg">
             {book?.features?.map((feature: string) => (
               <li key={feature}>{feature}</li>
             ))}
-          </ul>
+          </ul> */}
           <Button onClick={() => dispatch(addToCart(book))}>Add to cart</Button>
         </div>
         <div className="flex  flex-col gap-10">
-          <Button>Edit The book</Button>
-          <Button>Delete The book</Button>
+          <Button onClick={() => navigate(`/update-book/${_id}`)}>
+            Edit The book
+          </Button>
+          <Button
+            onClick={() => {
+              deleteBook(_id);
+            }}
+          >
+            Delete The book
+          </Button>
         </div>
       </div>
       <BookReview id={id!} />

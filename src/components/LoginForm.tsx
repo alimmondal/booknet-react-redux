@@ -10,7 +10,7 @@ import { loginUser } from '@/redux/features/user/userSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -50,7 +50,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
             </Label>
             <Input
               id="email"
-              placeholder="name@example.com"
+              defaultValue="name@example.com"
               type="email"
               autoCapitalize="none"
               autoComplete="email"
@@ -60,7 +60,7 @@ export function LoginForm({ className, ...props }: UserAuthFormProps) {
             {errors.email && <p>{errors.email.message}</p>}
             <Input
               id="password"
-              placeholder="your password"
+              defaultValue="your password"
               type="password"
               autoCapitalize="none"
               autoComplete="password"

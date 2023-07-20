@@ -42,7 +42,7 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
             </Label>
             <Input
               id="email"
-              placeholder="name@example.com"
+              defaultValue="name@example.com"
               type="email"
               autoCapitalize="none"
               autoComplete="email"
@@ -52,7 +52,7 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
             {errors.email && <p>{errors.email.message}</p>}
             <Input
               id="password"
-              placeholder="your password"
+              defaultValue="your password"
               type="password"
               autoCapitalize="none"
               autoCorrect="off"
@@ -61,7 +61,7 @@ export function SignupForm({ className, ...props }: UserAuthFormProps) {
             {errors.password && <p>{errors.password.message}</p>}
             <Input
               id="password"
-              placeholder="confirm password"
+              defaultValue="confirm password"
               type="password"
               autoCapitalize="none"
               autoCorrect="off"
