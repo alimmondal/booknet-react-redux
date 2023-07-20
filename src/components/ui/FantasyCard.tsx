@@ -8,7 +8,7 @@ interface IProps {
   book: IBook;
 }
 
-export default function Fantasy({ book }: IProps) {
+export default function FantasyCard({ book }: IProps) {
   const dispatch = useAppDispatch();
 
   const handleAddBook = (product: IBook) => {
@@ -19,10 +19,12 @@ export default function Fantasy({ book }: IProps) {
   };
   return (
     <div>
-      <div className="rounded-2xl h-[280px] flex flex-col items-start justify-between p-2 overflow-hidden shadow-md border border-gray-100 hover:shadow-2xl hover:scale-[102%] transition-all gap-2">
-        <Link to={`/product-details/${book._id}`} className="w-full">
+      <div className="rounded-2xl h-[280px] flex flex-col items-start  p-2 overflow-hidden shadow-md border border-gray-100 hover:shadow-2xl hover:scale-[102%] transition-all gap-2">
+        <Link to={`/book-details/${book._id}`} className="w-full">
           <img src={book?.image} alt="product" />
-          <h1 className="text-sm font-semibold">{book?.title}</h1>
+          <h1 className="text-sm font-semibold hover:underline">
+            {book?.title}
+          </h1>
         </Link>
         <p>Author: {book?.author}</p>
         {/* <p>Genre: {book?.genre}</p> */}

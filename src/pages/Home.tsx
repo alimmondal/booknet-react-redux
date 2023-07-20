@@ -1,4 +1,4 @@
-import Fantasy from '@/components/ui/Fantasy';
+import FantasyCard from '@/components/ui/FantasyCard';
 import { Button } from '@/components/ui/button';
 import Footer from '@/layouts/Footer';
 import { IBook } from '@/types/globalTypes';
@@ -44,9 +44,9 @@ export default function Home() {
       <div className="mx-20 py-10">
         <h3 className="text-4xl">Out of This World Sci-Fi & Fantasy</h3>
 
-        <div className="col-span-6 grid grid-cols-8 gap-10 py-10">
+        <div className="col-span-9 grid grid-cols-8 gap-5 py-10">
           {data?.map((book: IBook) => (
-            <Fantasy book={book} />
+            <FantasyCard book={book} />
           ))}
         </div>
       </div>

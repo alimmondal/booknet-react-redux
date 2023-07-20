@@ -11,7 +11,7 @@ import { useState } from 'react';
 
 export default function Checkout() {
   const [scheduled, setScheduled] = useState<boolean>(false);
-  const { products, total } = useAppSelector((state) => state.cart);
+  const { books: products, total } = useAppSelector((state) => state.cart);
 
   //! Dummy Data
 
