@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Input } from '@/components/ui/input';
-import { useUpdateBookMutation } from '@/redux/features/books/bookApi';
+import {
+  useSingleBookQuery,
+  useUpdateBookMutation,
+} from '@/redux/features/books/bookApi';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
@@ -17,7 +20,10 @@ interface IFormInput {
 
 const UpdateBook = () => {
   const id = useParams();
-  const [updateBook, { isLoading, isError }] = useUpdateBookMutation(id);
+  const { data: book, isLoading, error } = useSingleBookQuery(id);
+  // const { title } = data?.data || {};
+
+  const [updateBook, { isError }] = useUpdateBookMutation();
 
   const { handleSubmit, register, control, reset } = useForm<IFormInput>();
 
@@ -43,7 +49,7 @@ const UpdateBook = () => {
           </label>
           <Input
             // id="title"
-            defaultValue="Name of the new book"
+            defaultValue=""
             {...register('title')}
           />
         </div>
@@ -53,7 +59,7 @@ const UpdateBook = () => {
           </label>
           <Input
             // id="author"
-            defaultValue="Author of the new book"
+            defaultValue=""
             {...register('author')}
           />
         </div>
@@ -61,11 +67,7 @@ const UpdateBook = () => {
           <label className="mb-2" htmlFor="genre">
             Genre
           </label>
-          <Input
-            defaultValue="genre such as fiction..."
-            id="genre"
-            {...register('genre')}
-          />
+          <Input defaultValue="" id="genre" {...register('genre')} />
         </div>
         <div className="flex flex-col w-full max-w-xs">
           <label className="mb-2" htmlFor="publicationDate">
@@ -73,7 +75,7 @@ const UpdateBook = () => {
           </label>
           <Input
             // id="publicationDate"
-            defaultValue="date...01/03/2023"
+            defaultValue=""
             {...register('publicationDate')}
           />
         </div>
@@ -87,7 +89,7 @@ const UpdateBook = () => {
           <label className="mb-2" htmlFor="image">
             Image url
           </label>
-          <Input defaultValue="provide an image url" {...register('image')} />
+          <Input defaultValue="" {...register('image')} />
         </div>
         <div className="flex flex-col w-full">
           <label className="mb-2" htmlFor="status">
@@ -95,7 +97,7 @@ const UpdateBook = () => {
           </label>
           <Input
             // id="status"
-            defaultValue="status...true/false"
+            defaultValue=""
             {...register('status')}
           />
         </div>

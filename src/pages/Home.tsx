@@ -1,17 +1,34 @@
 import FantasyCard from '@/components/ui/FantasyCard';
 import { Button } from '@/components/ui/button';
 import Footer from '@/layouts/Footer';
+import { useGetBooksQuery } from '@/redux/features/books/bookApi';
 import { IBook } from '@/types/globalTypes';
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
-  const [data, setData] = useState<IBook[]>([]);
-  useEffect(() => {
-    fetch('./data.json')
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  }, []);
+  // const [data, setData] = useState<IBook[]>([]);
+  // useEffect(() => {
+  //   fetch('./data.json')
+  //     .then((res) => res.json())
+  //     .then((data) => setData(data));
+  // }, []);
+  const { data, isLoading, error } = useGetBooksQuery(undefined);
+
+  // const { status, priceRange } = useAppSelector((state) => state.book);
+
+  // let booksData;
+
+  // if (status) {
+  //   booksData = data?.data?.filter(
+  //     (item: { price: number }) => item.price < priceRange
+  //   );
+  // } else if (priceRange > 0) {
+  //   booksData = data?.data?.filter(
+  //     (item: { price: number }) => item.price < priceRange
+  //   );
+  // } else {
+  //   booksData = data?.data;
+  // }
   return (
     <>
       <div className="flex justify-between items-center h-[calc(100vh-80px)] max-w-7xl mx-28 ">
@@ -45,7 +62,7 @@ export default function Home() {
         <h3 className="text-4xl">Out of This World Sci-Fi & Fantasy</h3>
 
         <div className="col-span-9 grid grid-cols-8 gap-5 py-10">
-          {data?.map((book: IBook) => (
+          {data?.data?.map((book: IBook) => (
             <FantasyCard book={book} />
           ))}
         </div>

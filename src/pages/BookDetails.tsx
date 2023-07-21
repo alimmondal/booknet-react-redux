@@ -6,12 +6,12 @@ import {
   useSingleBookQuery,
 } from '@/redux/features/books/bookApi';
 import { addToCart } from '@/redux/features/cart/cartSlice';
-import { useAppDispatch } from '@/redux/hook';
+import { useAppDispatch, useAppSelector } from '@/redux/hook';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export default function BookDetails() {
   const { id } = useParams();
-
+  const { user } = useAppSelector((state) => state.user);
   //! Temporary code, should be replaced with redux
   // const [data, setData] = useState<IProduct[]>([]);
   // useEffect(() => {
@@ -28,13 +28,18 @@ export default function BookDetails() {
   const { data: book, isLoading, error } = useSingleBookQuery(id);
 
   const _id = book?._id;
-  console.log(book, 'bookData');
+  // console.log(book, 'bookData');
 
   const [deleteBook] = useDeleteBookMutation();
   const navigate = useNavigate();
   // const { products, total } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
 
+  const handleDelete = () => {
+    alert('Sure? Delete!');
+    deleteBook(_id);
+    navigate('/books');
+  };
   return (
     <>
       <div className="flex max-w-7xl px-28 items-center justify-between border-b border-gray-300 py-20">
@@ -53,18 +58,22 @@ export default function BookDetails() {
           </ul> */}
           <Button onClick={() => dispatch(addToCart(book))}>Add to cart</Button>
         </div>
-        <div className="flex  flex-col gap-10">
-          <Button onClick={() => navigate(`/update-book/${_id}`)}>
-            Edit The book
-          </Button>
-          <Button
-            onClick={() => {
-              deleteBook(_id);
-            }}
-          >
-            Delete The book
-          </Button>
-        </div>
+
+        {user.email && (
+          <div className="flex  flex-col gap-10">
+            <Button onClick={() => navigate(`/update-book/${_id}`)}>
+              Edit The book
+            </Button>
+            <Button
+              // onClick={() => {
+              //   deleteBook(_id);
+              // }}
+              onClick={handleDelete}
+            >
+              Delete The book
+            </Button>
+          </div>
+        )}
       </div>
       <BookReview id={id!} />
     </>

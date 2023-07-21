@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import { Input } from '@/components/ui/input';
+import { toast } from '@/components/ui/use-toast';
 import { usePostBookMutation } from '@/redux/features/books/bookApi';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
@@ -37,6 +38,9 @@ const AddBook = () => {
     console.log(data);
     postBook({ ...data, comments: [] });
     reset();
+    toast({
+      description: 'Book Added',
+    });
   };
 
   // const onSubmit = (data: any) => {
