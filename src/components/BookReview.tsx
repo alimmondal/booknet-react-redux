@@ -38,7 +38,7 @@ export default function BookReview({ id }: IProps) {
     event.preventDefault();
     const options = {
       id: id,
-      data: { comment: inputValue },
+      data: { comments: inputValue },
     };
     postComment(options);
     setInputValue('');
@@ -65,7 +65,7 @@ export default function BookReview({ id }: IProps) {
         </Button>
       </form>
       <div className="mt-10">
-        {data?.comments?.map((comment: string, index: number) => (
+        {data?.data?.comments?.map((comment: string, index: number) => (
           <div key={index} className="flex gap-3 items-center mb-5">
             <Avatar>
               <AvatarImage src="https://github.com/shadcn.png" />

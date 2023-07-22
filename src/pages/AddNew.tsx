@@ -6,13 +6,13 @@ import { usePostBookMutation } from '@/redux/features/books/bookApi';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface IFormInput {
-  title: string;
-  author: string;
-  price: number;
-  image: string;
-  genre: string;
-  publicationDate: string;
-  status: boolean;
+  title?: string;
+  author?: string;
+  price?: number;
+  image?: string;
+  genre?: string;
+  publicationDate?: string;
+  status?: boolean;
 }
 
 const AddBook = () => {
@@ -35,7 +35,7 @@ const AddBook = () => {
   console.log(isError);
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
+    console.log(data, 'addNew');
     postBook({ ...data, comments: [] });
     reset();
     toast({
@@ -61,7 +61,7 @@ const AddBook = () => {
             Name
           </label>
           <Input
-            // id="title"
+            id="title"
             defaultValue="Name of the new book"
             {...register('title')}
           />
@@ -71,7 +71,7 @@ const AddBook = () => {
             Author
           </label>
           <Input
-            // id="author"
+            id="author"
             defaultValue="Author of the new book"
             {...register('author')}
           />
@@ -91,7 +91,7 @@ const AddBook = () => {
             Publication Date
           </label>
           <Input
-            // id="publicationDate"
+            id="publicationDate"
             defaultValue="date...01/03/2023"
             {...register('publicationDate')}
           />
@@ -100,12 +100,7 @@ const AddBook = () => {
           <label className="mb-2" htmlFor="price">
             Price
           </label>
-          <Input
-            type="number"
-            id="price"
-            defaultValue="price"
-            {...register('price', { min: 2 })}
-          />
+          <Input type="number" id="price" {...register('price', { min: 2 })} />
         </div>
         <div className="flex flex-col w-full max-w-xs">
           <label className="mb-2" htmlFor="image">
@@ -118,7 +113,7 @@ const AddBook = () => {
             status
           </label>
           <Input
-            // id="status"
+            id="status"
             defaultValue="status...true/false"
             {...register('status')}
           />
@@ -135,15 +130,3 @@ const AddBook = () => {
 };
 
 export default AddBook;
-
-// Position name
-// Company name
-// Experience
-// Work Level
-// Salary Range
-// Employment Type
-// Location
-// Overview
-// Responsibilities
-// Requirements
-// Skills

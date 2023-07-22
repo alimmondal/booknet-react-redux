@@ -27,8 +27,8 @@ export default function BookDetails() {
 
   const { data: book, isLoading, error } = useSingleBookQuery(id);
 
-  const _id = book?._id;
-  // console.log(book, 'bookData');
+  const _id = book?.data._id;
+  console.log(book, 'bookData');
 
   const [deleteBook] = useDeleteBookMutation();
   const navigate = useNavigate();
@@ -44,13 +44,15 @@ export default function BookDetails() {
     <>
       <div className="flex max-w-7xl px-28 items-center justify-between border-b border-gray-300 py-20">
         <div className="">
-          <img src={book?.image} alt="" className="object-cover h-80" />
+          <img src={book?.data?.image} alt="" className="object-cover h-80" />
         </div>
         <div className=" space-y-3">
-          <h1 className="text-3xl font-semibold">{book?.title}</h1>
-          <p className="text-xl">Author: {book?.author}</p>
-          <p className="text-xl">Publication Date: {book?.publicationDate}</p>
-          <p className="text-xl">Rating: {book?.rating}</p>
+          <h1 className="text-3xl font-semibold">{book?.data?.title}</h1>
+          <p className="text-xl">Author: {book?.data?.author}</p>
+          <p className="text-xl">
+            Publication Date: {book?.data?.publicationDate}
+          </p>
+          <p className="text-xl">Rating: {book?.data?.rating}</p>
           {/* <ul className="space-y-1 text-lg">
             {book?.features?.map((feature: string) => (
               <li key={feature}>{feature}</li>
@@ -75,7 +77,7 @@ export default function BookDetails() {
           </div>
         )}
       </div>
-      <BookReview id={id!} />
+      <BookReview id={_id} />
     </>
   );
 }
