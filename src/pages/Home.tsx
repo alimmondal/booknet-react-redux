@@ -12,7 +12,10 @@ export default function Home() {
   //     .then((res) => res.json())
   //     .then((data) => setData(data));
   // }, []);
+
   const { data, isLoading, error } = useGetBooksQuery(undefined);
+  console.log(isLoading);
+  console.log(error);
 
   // const { status, priceRange } = useAppSelector((state) => state.book);
 

@@ -2,13 +2,8 @@ import BookCard from '@/components/BookCard';
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
-import { useToast } from '@/components/ui/use-toast';
 import { useGetBooksQuery } from '@/redux/features/books/bookApi';
 import { setPriceRange } from '@/redux/features/books/bookSlice';
-// import {
-//   setPriceRange,
-//   toggleStatus,
-// } from '@/redux/features/products/productSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
 import { IBook } from '@/types/globalTypes';
 
@@ -22,11 +17,10 @@ export default function Books() {
 
   const { data, isLoading, error } = useGetBooksQuery(undefined);
 
-  // console.log( error);
-  // console.log(data, );
-  // console.log(isLoading);
+  console.log(error);
+  // console.log(data );
+  console.log(isLoading);
 
-  const { toast } = useToast();
   const { status, priceRange } = useAppSelector((state) => state.book);
   const dispatch = useAppDispatch();
 

@@ -29,7 +29,7 @@ const AddBook = () => {
   //   status: boolean;
   // }
 
-  const { handleSubmit, register, control, reset } = useForm<IFormInput>();
+  const { handleSubmit, register, reset } = useForm<IFormInput>();
 
   console.log(isLoading);
   console.log(isError);

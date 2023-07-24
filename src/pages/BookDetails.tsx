@@ -26,9 +26,10 @@ export default function BookDetails() {
   //! Temporary code ends here
 
   const { data: book, isLoading, error } = useSingleBookQuery(id);
-
-  const _id = book?.data._id;
-  console.log(book, 'bookData');
+  console.log(isLoading);
+  console.log(error);
+  const bookId = book?.data._id;
+  // console.log(book, 'bookData');
 
   const [deleteBook] = useDeleteBookMutation();
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ export default function BookDetails() {
 
   const handleDelete = () => {
     alert('Sure? Delete!');
-    deleteBook(_id);
+    deleteBook(bookId);
     navigate('/books');
   };
   return (
@@ -63,7 +64,7 @@ export default function BookDetails() {
 
         {user.email && (
           <div className="flex  flex-col gap-10">
-            <Button onClick={() => navigate(`/update-book/${_id}`)}>
+            <Button onClick={() => navigate(`/update-book/${bookId}`)}>
               Edit The book
             </Button>
             <Button
@@ -77,7 +78,7 @@ export default function BookDetails() {
           </div>
         )}
       </div>
-      <BookReview id={_id} />
+      <BookReview id={bookId} />
     </>
   );
 }

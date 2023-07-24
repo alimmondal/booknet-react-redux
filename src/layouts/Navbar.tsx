@@ -28,6 +28,7 @@ export default function Navbar() {
         dispatch(setUser(null));
       })
       .catch((error) => {
+        console.log(error);
         // An error happened.
       });
   };

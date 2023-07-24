@@ -2,6 +2,7 @@ import {
   useGetCommentQuery,
   usePostCommentMutation,
 } from '@/redux/features/books/bookApi';
+import mongoose from 'mongoose';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { FiSend } from 'react-icons/fi';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
@@ -23,7 +24,7 @@ export default function BookReview({ id }: IProps) {
   const [inputValue, setInputValue] = useState<string>('');
   // console.log(inputValue);
 
-  const { data } = useGetCommentQuery(id, {
+  const { data } = useGetCommentQuery(new mongoose.Types.ObjectId(id), {
     refetchOnMountOrArgChange: true,
     pollingInterval: 5000,
   });

@@ -1,22 +1,22 @@
-import { addToCart } from '@/redux/features/cart/cartSlice';
-import { useAppDispatch } from '@/redux/hook';
+// import { addToCart } from '@/redux/features/cart/cartSlice';
+// import { useAppDispatch } from '@/redux/hook';
 import { IBook } from '@/types/globalTypes';
 import { Link } from 'react-router-dom';
-import { toast } from './use-toast';
+// import { toast } from './use-toast';
 
 interface IProps {
   book: IBook;
 }
 
 export default function FantasyCard({ book }: IProps) {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  const handleAddBook = (product: IBook) => {
-    dispatch(addToCart(product));
-    toast({
-      description: 'Book Added',
-    });
-  };
+  // const handleAddBook = (product: IBook) => {
+  //   dispatch(addToCart(product));
+  //   toast({
+  //     description: 'Book Added',
+  //   });
+  // };
   return (
     <div>
       <div className="rounded-2xl h-[280px] flex flex-col items-start  p-2 overflow-hidden shadow-md border border-gray-100 hover:shadow-2xl hover:scale-[102%] transition-all gap-2">

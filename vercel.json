@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "routes": [
+    { "src": "/_next/static/(.*)", "dest": "/_next/static/$1" },
+    { "src": "/(.*\\.(js|json|ts|tsx))", "dest": "/$1" },
+    { "src": ".*", "dest": "/index.html" }
+  ]
+}
