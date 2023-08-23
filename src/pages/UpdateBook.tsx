@@ -18,6 +18,7 @@ interface IFormInput {
   status: boolean;
 }
 const UpdateBook = () => {
+  // const [inputValue, setInputValue] = useState<string>('');
   const bookId: any = useParams();
   const {
     data: book,
@@ -27,11 +28,7 @@ const UpdateBook = () => {
   // console.log('bookId', book);
 
   const { title, author, genre, publicationDate, price, image, status } =
-    book.data || {};
-
-  // const title = book?.data;
-  // console.log('update book', title);
-  // const { title } = data?.data || {};
+    book?.data || {};
 
   const [updateBook, { isError }] = useUpdateBookMutation();
   console.log(isError);
@@ -42,13 +39,25 @@ const UpdateBook = () => {
   // console.log(isError);
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log('submit', data);
-    updateBook(data);
-    // reset();
+    // console.log('submit', data);
+
+    const updatedData = {
+      title: data.title,
+      author: data.author,
+      genre: data.genre,
+      publicationDate: data.publicationDate,
+      price: data.price,
+      image: data.image,
+      status: data.status,
+    };
+
+    updateBook({ id: bookId, data: updatedData });
+    // setInputValue('');
+    reset();
   };
 
   return (
-    <div className="flex justify-center items-center overflow-auto p-10 ">
+    <div className="flex justify-center items-center overflow-auto p-10">
       <form
         className="shadow-lg p-10 flex flex-wrap gap-3 max-w-3xl justify-between border border-gray-300 rounded-md"
         onSubmit={handleSubmit(onSubmit)}
@@ -90,7 +99,7 @@ const UpdateBook = () => {
             type="number"
             id="price"
             defaultValue={price}
-            {...register('price', { min: 2 })}
+            {...register('price')}
           />
         </div>
         <div className="flex flex-col w-full max-w-xs">

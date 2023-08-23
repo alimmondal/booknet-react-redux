@@ -29,11 +29,14 @@ const bookApi = api.injectEndpoints({
     }),
 
     updateBook: builder.mutation({
-      query: ({ id, ...data }) => ({
-        url: `/books/${id}`,
-        method: 'PATCH',
-        body: data,
-      }),
+      query: ({ id, ...data }) => {
+        console.log('bookApi', id);
+        return {
+          url: `/books/${id?.id}`,
+          method: 'PATCH',
+          body: data,
+        };
+      },
       // invalidatesTags: ['books'],
     }),
 

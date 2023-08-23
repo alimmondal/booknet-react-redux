@@ -31,6 +31,7 @@ export default function BookReview({ id }: IProps) {
 
   const [postComment, { isLoading, isError, isSuccess }] =
     usePostCommentMutation();
+
   console.log(isLoading);
   console.log(isError);
   console.log(isSuccess);
