@@ -28,6 +28,7 @@ export default function BookDetails() {
   const { data: book, isLoading, error } = useSingleBookQuery(id);
   console.log(isLoading);
   console.log(error);
+
   const bookId = book?.data._id;
   // console.log(book, 'bookData');
 

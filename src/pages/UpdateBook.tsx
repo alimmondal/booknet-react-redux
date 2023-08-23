@@ -1,8 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { Input } from '@/components/ui/input';
-import { useUpdateBookMutation } from '@/redux/features/books/bookApi';
+import {
+  useSingleBookQuery,
+  useUpdateBookMutation,
+} from '@/redux/features/books/bookApi';
+import mongoose from 'mongoose';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 
 interface IFormInput {
   title: string;
@@ -14,13 +18,16 @@ interface IFormInput {
   status: boolean;
 }
 const UpdateBook = () => {
-  // const id: any = useParams();
-  // const {
-  //   data: book,
-  //   isLoading,
-  //   error,
-  // } = useSingleBookQuery(new mongoose.Types.ObjectId(id));
-  // console.log(error);
+  const bookId: any = useParams();
+  const {
+    data: book,
+    isLoading,
+    error,
+  } = useSingleBookQuery(new mongoose.Types.ObjectId(bookId));
+  // console.log('bookId', book);
+
+  const { title, author, genre, publicationDate, price, image, status } =
+    book.data || {};
 
   // const title = book?.data;
   // console.log('update book', title);
@@ -35,9 +42,9 @@ const UpdateBook = () => {
   // console.log(isError);
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
+    console.log('submit', data);
     updateBook(data);
-    reset();
+    // reset();
   };
 
   return (
@@ -51,19 +58,19 @@ const UpdateBook = () => {
           <label className="mb-2" htmlFor="title">
             Name
           </label>
-          <Input id="title" defaultValue="" {...register('title')} />
+          <Input id="title" defaultValue={title} {...register('title')} />
         </div>
         <div className="flex flex-col w-full max-w-xs">
           <label className="mb-2" htmlFor="author">
             Author
           </label>
-          <Input id="author" defaultValue="" {...register('author')} />
+          <Input id="author" defaultValue={author} {...register('author')} />
         </div>
         <div className="flex flex-col w-full max-w-xs">
           <label className="mb-2" htmlFor="genre">
             Genre
           </label>
-          <Input defaultValue="" id="genre" {...register('genre')} />
+          <Input defaultValue={genre} id="genre" {...register('genre')} />
         </div>
         <div className="flex flex-col w-full max-w-xs">
           <label className="mb-2" htmlFor="publicationDate">
@@ -71,7 +78,7 @@ const UpdateBook = () => {
           </label>
           <Input
             id="publicationDate"
-            defaultValue=""
+            defaultValue={publicationDate}
             {...register('publicationDate')}
           />
         </div>
@@ -79,19 +86,24 @@ const UpdateBook = () => {
           <label className="mb-2" htmlFor="price">
             Price
           </label>
-          <Input type="number" id="price" {...register('price', { min: 2 })} />
+          <Input
+            type="number"
+            id="price"
+            defaultValue={price}
+            {...register('price', { min: 2 })}
+          />
         </div>
         <div className="flex flex-col w-full max-w-xs">
           <label className="mb-2" htmlFor="image">
             Image url
           </label>
-          <Input defaultValue="" {...register('image')} />
+          <Input defaultValue={image} {...register('image')} />
         </div>
         <div className="flex flex-col w-full">
           <label className="mb-2" htmlFor="status">
             status
           </label>
-          <Input id="status" defaultValue="" {...register('status')} />
+          <Input id="status" defaultValue={status} {...register('status')} />
         </div>
 
         <div className="flex justify-end items-center w-full mt-3">
