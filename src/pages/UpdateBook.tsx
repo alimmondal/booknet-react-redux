@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Input } from '@/components/ui/input';
+import { toast } from '@/components/ui/use-toast';
 import {
   useSingleBookQuery,
   useUpdateBookMutation,
@@ -18,8 +19,8 @@ interface IFormInput {
   status: boolean;
 }
 const UpdateBook = () => {
-  // const [inputValue, setInputValue] = useState<string>('');
   const bookId: any = useParams();
+
   const {
     data: book,
     isLoading,
@@ -35,8 +36,8 @@ const UpdateBook = () => {
 
   const { handleSubmit, register, reset } = useForm<IFormInput>();
 
-  // console.log(isLoading);
-  // console.log(isError);
+  console.log(isLoading);
+  console.log(isError);
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     // console.log('submit', data);
@@ -52,7 +53,9 @@ const UpdateBook = () => {
     };
 
     updateBook({ id: bookId, data: updatedData });
-    // setInputValue('');
+    toast({
+      description: 'Book updated successfully',
+    });
     reset();
   };
 

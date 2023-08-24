@@ -19,16 +19,6 @@ const AddBook = () => {
   //   const navigate = useNavigate();
   const [postBook, { isLoading, isError }] = usePostBookMutation();
 
-  // interface IFormInput {
-  //   title: string;
-  //   author: string;
-  //   price: number;
-  //   image: string;
-  //   genre: string;
-  //   publicationDate: string;
-  //   status: boolean;
-  // }
-
   const { handleSubmit, register, reset } = useForm<IFormInput>();
 
   console.log(isLoading);
@@ -42,12 +32,6 @@ const AddBook = () => {
       description: 'Book Added',
     });
   };
-
-  // const onSubmit = (data: any) => {
-  // console.log(data);
-  //   postBook({ ...data, comments: [] });
-  //   reset();
-  // };
 
   return (
     <div className="flex justify-center items-center overflow-auto p-10 ">
